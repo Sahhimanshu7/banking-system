@@ -16,15 +16,13 @@ private:
     static bool addToCustomerDatabase(ListNode* data)
     {
         ListNode* current = data;
-        std::cout << createACustomer(current) << "\n";
-        if(current == nullptr) return false;
-        while(current != nullptr){
-            std::cout << current -> value << "\n";
-            current = current -> next;
+        if (createACustomer(current))
+        {
+            delete current;
+            return true;
         }
-
         delete current;
-        return true;
+        return false;
     }
 
     int checkFromCustomerDatabase()
