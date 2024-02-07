@@ -6,6 +6,8 @@
 #include <limits>
 
 #include "../include/main.h"
+#include "../include/errorMessage.h"
+#include "../include/registrationValidator.h"
 
 class Customer
 {
@@ -60,11 +62,6 @@ public:
 
         auto* add = new ListNode(address);
 
-        std::cout << address;
-        std::cout << "\n";
-
-
-
         std::cout << "Enter your phone number. : (XXX-XXX-XXXX) ";
         std::string phoneNumber;
         std::cin >> phoneNumber;
@@ -77,10 +74,16 @@ public:
 
         auto* user = new ListNode(username);
 
-        std::cout << "Enter your password. : ";
+        bool strongPassword = false;
         std::string password;
-        std::cin >> password;
-
+        while(!strongPassword){
+            std::cout << "Enter your password. : (8 characters minimum, at least one digit, one special character, one uppercase, and a lowercase character) \n";
+            std::cin >> password;
+            strongPassword = isStrongPassword(password);
+            if (!strongPassword){
+                displayError("\nPlease Try Again! \nPassword is not strong. \n");
+            }
+        }
         auto* pass = new ListNode(password);
 
         ListNode* data = name1;
@@ -119,8 +122,14 @@ int main()
     registerOrLogin = Customer::askForLoginOrRegister();
     if (registerOrLogin == 'r' || registerOrLogin == 'R')
     {
-        Customer::registerCustomer() && std::cout << "Thank you for registration! \n";
-        !Customer::registerCustomer() && std::cout << "An error Occurred!\n";
+        if(Customer::registerCustomer())
+        {
+            displayError("Thank you for registration!");
+        }
+        else
+        {
+            displayError("An error occurred!");
+        }
     }
     else if (registerOrLogin == 'l' || registerOrLogin == 'L')
     {
