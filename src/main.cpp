@@ -8,6 +8,7 @@
 #include "../include/main.h"
 #include "../include/errorMessage.h"
 #include "../include/registrationValidator.h"
+#include "../include/database.h"
 
 class Customer
 {
@@ -15,6 +16,7 @@ private:
     static bool addToCustomerDatabase(ListNode* data)
     {
         ListNode* current = data;
+        std::cout << createACustomer(current) << "\n";
         if(current == nullptr) return false;
         while(current != nullptr){
             std::cout << current -> value << "\n";
