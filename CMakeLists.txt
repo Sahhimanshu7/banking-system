@@ -10,4 +10,10 @@ add_executable(banking_system src/main.cpp
         include/errorMessage.h
         src/services/registrationValidator.cpp
         include/registrationValidator.h
+        src/database/crud.cpp
+        include/crud.h
+        src/database/search.cpp
+        include/search.h
+        src/transactions/transaction.cpp
+        include/transaction.h
 )
