@@ -6,6 +6,7 @@
 #define BANKING_SYSTEM_MAIN_H
 
 #include <string>
+#include <utility>
 
 void welcome();
 
@@ -14,7 +15,7 @@ struct ListNode {
     ListNode* next;
 
     //constructor
-    ListNode(const std::string& val) : value(val), next(nullptr) {};
+    explicit ListNode(std::string  val) : value(std::move(val)), next(nullptr) {};
 };
 
 #endif //BANKING_SYSTEM_MAIN_H
